@@ -1,14 +1,14 @@
 import getBudgetObject from './7-getBudgetObject.js';
 
-export default function getFullBudgetObject(income, gdp, capita) {
-  const budget = getBudgetObject(income, gdp, capita);
+export default function getFullBudgetObject(incomeAmount, gdpAmount, capitaAmount) {
+  const budget = getBudgetObject(incomeAmount, gdpAmount, capitaAmount);
   const fullBudget = {
     ...budget,
-    getIncomeInDollars(income) {
-      return `$${income}`;
+    getIncomeInDollars() {
+      return `$${incomeAmount}`;
     },
-    getIncomeInEuros(income) {
-      return `${income} euros`;
+    getIncomeInEuros() {
+      return `${incomeAmount} euros`;
     },
   };
 
