@@ -1,4 +1,6 @@
-async function asyncUploadUser(uploadPhoto, createUser) {
+import { uploadPhoto, createUser } from "./utils.js";
+
+async function asyncUploadUser() {
   try {
     const photoResponse = await uploadPhoto();
     const userResponse = await createUser();
