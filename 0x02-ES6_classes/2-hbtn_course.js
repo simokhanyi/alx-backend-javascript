@@ -1,77 +1,53 @@
-/**
- * Represents a Holberton Course.
- */
 class HolbertonCourse {
-  /**
-   * Creates a new Holberton Course.
-   * @param {string} name - The name of the course.
-   * @param {number} length - The length of the course.
-   * @param {string[]} students - The list of students enrolled in the course.
-   */
   constructor(name, length, students) {
-    this._name = name;
-    this._length = length;
-    this._students = students;
+    this._name = this._validateName(name);
+    this._length = this._validateLength(length);
+    this._students = this._validateStudents(students);
   }
 
-  /**
-   * Gets the name of the course.
-   * @returns {string} The name of the course.
-   */
   get name() {
     return this._name;
   }
 
-  /**
-   * Sets the name of the course.
-   * @param {string} value - The name to set.
-   * @throws {TypeError} If the name is not a string.
-   */
-  set name(value) {
-    if (typeof value !== 'string') {
-      throw new TypeError('Name must be a string');
-    }
-    this._name = value;
+  set name(newName) {
+    this._name = this._validateName(newName);
   }
 
-  /**
-   * Gets the length of the course.
-   * @returns {number} The length of the course.
-   */
   get length() {
     return this._length;
   }
 
-  /**
-   * Sets the length of the course.
-   * @param {number} value - The length to set.
-   * @throws {TypeError} If the length is not a number.
-   */
-  set length(value) {
-    if (typeof value !== 'number') {
-      throw new TypeError('Length must be a number');
-    }
-    this._length = value;
+  set length(newLength) {
+    this._length = this._validateLength(newLength);
   }
 
-  /**
-   * Gets the list of students enrolled in the course.
-   * @returns {string[]} The list of students enrolled in the course.
-   */
   get students() {
     return this._students;
   }
 
-  /**
-   * Sets the list of students enrolled in the course.
-   * @param {string[]} value - The list of students to set.
-   * @throws {TypeError} If students is not an array of strings.
-   */
-  set students(value) {
-    if (!Array.isArray(value) || value.some(item => typeof item !== 'string')) {
+  set students(newStudents) {
+    this._students = this._validateStudents(newStudents);
+  }
+
+  _validateName(name) {
+    if (typeof name !== 'string') {
+      throw new TypeError('Name must be a string');
+    }
+    return name;
+  }
+
+  _validateLength(length) {
+    if (typeof length !== 'number') {
+      throw new TypeError('Length must be a number');
+    }
+    return length;
+  }
+
+  _validateStudents(students) {
+    if (!Array.isArray(students) || students.some(student => typeof student !== 'string')) {
       throw new TypeError('Students must be an array of strings');
     }
-    this._students = value;
+    return students;
   }
 }
 
