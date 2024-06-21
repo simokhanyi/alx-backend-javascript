@@ -1,18 +1,18 @@
 const request = require('request');
 const { expect } = require('chai');
-const api = require('./api'); // Assuming api.js is in the same directory
+const server = require('./api');
 
 describe('Index page', () => {
   before((done) => {
-    // Wait for the server to start listening before proceeding with tests
-    api.on('listening', () => {
+    server.on('listening', () => {
+      console.log('API server is up and running');
       done();
     });
   });
 
   it('Correct status code?', (done) => {
     request('http://localhost:7865', (error, response, body) => {
-      expect(response.statusCode).to.equal(200);
+      expect(response && response.statusCode).to.equal(200);
       done();
     });
   });
@@ -25,8 +25,7 @@ describe('Index page', () => {
   });
 
   after((done) => {
-    // Close the server after all tests
-    api.close(() => {
+    server.close(() => {
       console.log('Server closed!');
       done();
     });
